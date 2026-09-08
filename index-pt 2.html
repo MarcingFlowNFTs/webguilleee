@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PINGASTOP77</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f6f5fb">
+<style>
+  :root{
+    --acento:#f59e0b; --tinta:#14181f; --gris:#8a94a6; --gris2:#626d80;
+    --tarjeta:#fff; --borde:rgba(20,24,31,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(560px 420px at 88% 4%,  rgba(255,190,220,.55),transparent 62%),
+      radial-gradient(520px 400px at 6% 22%,  rgba(186,214,255,.55),transparent 60%),
+      radial-gradient(600px 460px at 92% 88%, rgba(214,196,255,.48),transparent 62%),
+      radial-gradient(500px 380px at 4% 96%,  rgba(255,220,190,.42),transparent 60%),
+      #f6f5fb;
+    background-attachment:fixed;
+    color:var(--tinta);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    padding:clamp(16px,4vw,32px) 16px 56px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .envoltorio{max-width:520px;margin:0 auto}
+
+  /* --- Idiomas: sem JS aparece portugues --- */
+  .en{display:none}
+  body.ingles .pt{display:none}
+  body.ingles .en{display:inline}
+  body.ingles p.en,body.ingles div.en{display:block}
+
+  .idiomas{display:flex;justify-content:center;gap:6px;margin-bottom:18px}
+  .idiomas button{
+    background:#fff;border:1px solid var(--borde);border-radius:100px;
+    padding:6px 15px;font:700 12.5px system-ui,sans-serif;color:var(--gris2);
+    cursor:pointer;box-shadow:0 2px 8px rgba(20,24,31,.06);transition:.14s;
+  }
+  .idiomas button.on{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+
+  header{text-align:center;margin-bottom:clamp(20px,4vw,28px)}
+  h1{font-size:clamp(30px,8.5vw,42px);font-weight:900;letter-spacing:-.035em;line-height:1.04;margin-bottom:10px}
+  .subtitulo{font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gris)}
+
+  .aviso-app{
+    display:none;background:#fff4d6;border:1px solid #f2dfb0;border-radius:16px;
+    padding:14px 16px;margin-bottom:16px;font-size:13.5px;line-height:1.5;color:#7a5a12;
+  }
+  body.en-app .aviso-app{display:block}
+
+  .pasos{display:flex;flex-direction:column;gap:16px}
+  .paso{
+    background:var(--tarjeta);border:1px solid var(--borde);border-radius:24px;
+    padding:20px;box-shadow:0 4px 18px rgba(20,24,31,.06);
+  }
+  .cabecera{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+  .num{
+    width:44px;height:44px;border-radius:14px;display:grid;place-items:center;
+    flex-shrink:0;font-size:20px;font-weight:900;color:#fff;
+    box-shadow:0 4px 12px rgba(20,24,31,.18);
+  }
+  .encabezado-txt{min-width:0;flex:1;padding-top:1px}
+  .etiqueta{font-size:10.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--gris);margin-bottom:4px}
+  .titulo-paso{font-size:clamp(17px,4.4vw,20px);font-weight:900;line-height:1.22;letter-spacing:-.02em;text-transform:uppercase}
+  .descripcion{font-size:14px;color:var(--gris2);line-height:1.6;margin-bottom:16px}
+
+  /* --- Boton real (copiar) --- */
+  .btn{
+    width:100%;border:0;border-radius:16px;padding:17px 20px;
+    font:800 16px system-ui,sans-serif;cursor:pointer;color:#fff;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:transform .14s,filter .14s;
+  }
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .btn.listo{background:#22c55e !important}
+
+  /* --- Bloque de referencia: parece boton pero NO navega --- */
+  .btn-guia{
+    width:100%;border:0;border-radius:16px;padding:17px 20px;
+    font:800 16px system-ui,sans-serif;color:#fff;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    cursor:default;user-select:none;-webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  /* --- Enlace mostrado como texto, NO clickeable --- */
+  .enlace-visible{
+    font-size:12.5px;color:var(--tinta);font-weight:700;
+    word-break:break-all;margin-top:11px;line-height:1.5;
+    background:#f5f6f9;border:1px dashed #cdd3de;
+    padding:11px 12px;border-radius:10px;text-align:center;
+    user-select:all;-webkit-user-select:all;
+  }
+
+  .panel-contador{border-radius:18px;padding:18px 16px 20px;text-align:center;background:#ff9c2b}
+  .go{display:inline-block;color:#0d7a3f;background:#7ef2b0;font-size:10px;font-weight:900;letter-spacing:.12em;padding:3px 11px;border-radius:100px;margin-bottom:10px}
+  .contador{
+    display:inline-block;background:#241a2e;border-radius:12px;padding:12px 22px;
+    font-family:ui-monospace,Menlo,Consolas,monospace;
+    font-size:clamp(26px,7vw,34px);font-weight:700;letter-spacing:.1em;color:#e879f9;
+    text-shadow:0 0 8px #e879f9,0 0 24px rgba(232,121,249,.75);
+    box-shadow:0 0 0 3px rgba(36,26,46,.35),0 6px 18px rgba(0,0,0,.22);
+  }
+
+
+  .widget{
+    background:var(--tarjeta);border:1px solid var(--borde);border-radius:24px;
+    padding:20px;margin-top:16px;box-shadow:0 4px 18px rgba(20,24,31,.06);text-align:center;
+  }
+  .widget-titulo{font-size:10.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--gris);margin-bottom:14px}
+
+  footer{text-align:center;margin-top:30px;color:var(--gris);font-size:11.5px;line-height:1.6}
+  :focus-visible{outline:3px solid var(--acento);outline-offset:3px;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="envoltorio">
+
+  <nav class="idiomas" aria-label="Idioma">
+    <button data-idioma="pt" class="on">Português</button>
+    <button data-idioma="en">English</button>
+  </nav>
+
+  <header>
+    <!-- ===== NOMBRE DE LA MARCA ===== -->
+    <h1>PINGASTOP77</h1>
+    <div class="subtitulo">
+      <span class="pt">Copie o link e cole no Google</span>
+      <span class="en">Copy the link and paste it into Google</span>
+    </div>
+  </header>
+
+  <div class="aviso-app">
+    <span class="pt">Você está dentro de um app. Copie o link e cole no seu navegador para o site funcionar bem.</span>
+    <span class="en">You're inside an app. Copy the link and paste it into your browser so the site works properly.</span>
+  </div>
+
+  <div class="pasos">
+
+    <!-- ============ 1 - COPIAR ============ -->
+    <div class="paso">
+      <div class="cabecera">
+        <div class="num" style="background:#2f7cf6">1</div>
+        <div class="encabezado-txt">
+          <div class="etiqueta">
+            <span class="pt">Primeiro passo</span><span class="en">Step one</span>
+          </div>
+          <div class="titulo-paso">
+            <span class="pt">COPIE ESTE LINK</span><span class="en">COPY THIS LINK</span>
+          </div>
+        </div>
+      </div>
+      <p class="descripcion">
+        <span class="pt">Toque no botão azul para copiar o link.</span>
+        <span class="en">Tap the blue button to copy the link.</span>
+      </p>
+
+      <button class="btn" id="btnCopiar" style="background:#2f7cf6">
+        <span>&#128203;</span>
+        <span class="pt">Copiar link</span><span class="en">Copy link</span>
+      </button>
+
+      <!-- ===== EL ENLACE - unico lugar donde se cambia ===== -->
+      <div class="enlace-visible" id="enlaceTexto">https://pingastop77.como-saber.com/category/eventos-de-robux/</div>
+    </div>
+
+    <!-- ============ 2 - PEGAR EN GOOGLE ============ -->
+    <div class="paso">
+      <div class="cabecera">
+        <div class="num" style="background:#f0426e">2</div>
+        <div class="encabezado-txt">
+          <div class="etiqueta">
+            <span class="pt">Segundo passo</span><span class="en">Step two</span>
+          </div>
+          <div class="titulo-paso">
+            <span class="pt">SAIA E COLE NO GOOGLE</span><span class="en">LEAVE AND PASTE IT IN GOOGLE</span>
+          </div>
+        </div>
+      </div>
+      <p class="descripcion">
+        <span class="pt">Saia deste app, abra o Google ou o Chrome, e cole o link na barra de cima. Precisa ser pelo seu navegador: aqui dentro o site não funciona bem.</span>
+        <span class="en">Leave this app, open Google or Chrome, and paste the link into the bar at the top. It has to be from your browser — in here the site doesn't work properly.</span>
+      </p>
+
+      <!-- Bloque de referencia: NO es un enlace, no navega a ningun lado -->
+      <div class="btn-guia" id="guia" style="background:#f0426e">
+        <span>&#127760;</span>
+        <span class="pt">Abrir no navegador</span><span class="en">Open in browser</span>
+      </div>
+    </div>
+
+    <!-- ============ 3 - CONTADOR ============ -->
+    <div class="paso">
+      <div class="cabecera">
+        <div class="num" style="background:#22c55e">3</div>
+        <div class="encabezado-txt">
+          <div class="etiqueta">
+            <span class="pt">Terceiro passo</span><span class="en">Step three</span>
+          </div>
+          <div class="titulo-paso">
+            <span class="pt">VOCÊ VAI VER UM CONTADOR</span><span class="en">YOU'LL SEE A TIMER</span>
+          </div>
+        </div>
+      </div>
+      <p class="descripcion">
+        <span class="pt">No site você vai encontrar um indicador de tempo como este.</span>
+        <span class="en">On the site you'll find a time indicator like this one.</span>
+      </p>
+      <div class="panel-contador">
+        <div class="go">GO</div>
+        <div class="contador" id="contador" data-minutos="1">00:00</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="widget">
+    <div class="widget-titulo">NexoCount</div>
+    <script>(function(){
+      var n=window._nc=window._nc||{sites:[]};
+      n.sites.push({k:"nc_70df557bc3b7",s:"card",t:"dark",z:"medium"});
+      if(!n.loaded){n.loaded=true;
+        var s=document.createElement("script");s.async=true;
+        s.src="https://nexocount.nexodigit4linternational.agency/widget/nexocount.js";
+        document.head.appendChild(s);}
+    })();</script>
+  </div>
+
+  <footer>
+    <span class="pt">Site não afiliado nem patrocinado por nenhuma empresa de videogames.</span>
+    <span class="en">This site is not affiliated with or sponsored by any video game company.</span>
+  </footer>
+</div>
+
+<script>
+/* Opcional: si el JS no corre, la pagina igual se lee entera y el enlace
+   se puede seleccionar y copiar a mano. */
+(function(){
+  var cuerpo = document.body;
+  var ingles = function(){ return cuerpo.classList.contains('ingles'); };
+
+  /* ---------- Idioma ---------- */
+  function ponerIdioma(id){
+    cuerpo.classList.toggle('ingles', id === 'en');
+    document.documentElement.lang = id;
+    Array.prototype.forEach.call(document.querySelectorAll('.idiomas button'), function(b){
+      b.classList.toggle('on', b.dataset.idioma === id);
+    });
+  }
+  var param = new URLSearchParams(location.search).get('idioma');
+  var nav = (navigator.language || 'pt').slice(0,2);
+  ponerIdioma(param === 'en' || param === 'pt' ? param : (nav === 'en' ? 'en' : 'pt'));
+
+  Array.prototype.forEach.call(document.querySelectorAll('.idiomas button'), function(b){
+    b.addEventListener('click', function(){ ponerIdioma(b.dataset.idioma); });
+  });
+
+  /* ---------- Aviso: navegador dentro de una app ---------- */
+  if (/BytedanceWebview|TikTok|musical_ly|Instagram|FBAN|FBAV|Snapchat|Line\//i.test(navigator.userAgent||'')) {
+    cuerpo.classList.add('en-app');
+  }
+
+  /* ---------- Copiar ---------- */
+  var btn = document.getElementById('btnCopiar');
+  var caja = document.getElementById('enlaceTexto');
+  var enlace = caja ? caja.textContent.trim() : '';
+
+  if (btn && enlace) {
+    btn.addEventListener('click', async function(){
+      var ok = false;
+      try { await navigator.clipboard.writeText(enlace); ok = true; }
+      catch(e){
+        var ta = document.createElement('textarea');
+        ta.value = enlace; ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta); ta.select();
+        try { ok = document.execCommand('copy'); } catch(e2){}
+        document.body.removeChild(ta);
+      }
+      if (ok){
+        var previo = btn.innerHTML;
+        btn.innerHTML = '<span>&#9989;</span><span>' +
+          (ingles() ? 'Copied — now paste it in Google' : 'Copiado — agora cole no Google') + '</span>';
+        btn.classList.add('listo');
+        setTimeout(function(){ btn.innerHTML = previo; btn.classList.remove('listo'); }, 3000);
+      } else {
+        window.prompt(ingles() ? 'Copy this link' : 'Copie este link', enlace);
+      }
+    });
+  }
+
+  /* ---------- Bloque de referencia: recuerda que no navega ----------
+     Para que quede totalmente inerte, borra este bloque entero.        */
+  var guia = document.getElementById('guia');
+  if (guia){
+    guia.addEventListener('click', function(){
+      var previo = guia.innerHTML;
+      guia.innerHTML = '<span>&#9757;</span><span>' +
+        (ingles() ? 'Paste the link in Google' : 'Cole o link no Google') + '</span>';
+      setTimeout(function(){ guia.innerHTML = previo; }, 2000);
+    });
+  }
+
+  /* ---------- Contador de muestra ---------- */
+  var reloj = document.getElementById('contador');
+  if (reloj){
+    var tope = Math.max(1, parseInt(reloj.dataset.minutos || '1', 10)) * 60, seg = 0;
+    setInterval(function(){
+      seg = (seg + 1) % (tope + 1);
+      var m = Math.floor(seg/60), r = seg % 60;
+      reloj.textContent = ('0'+m).slice(-2) + ':' + ('0'+r).slice(-2);
+    }, 1000);
+  }
+})();
+</script>
+</body>
+</html>
